@@ -1,9 +1,10 @@
 package contact;
-Public class professionalContact extends contact {
+import java.util.Objects;
+public class professionalContact extends contact {
     String email;
-    public personalContact(String id, String name, String gender, String phoneNumber, String email) {
+    public professionalContact(String id, String name, String gender, String phoneNumber, String email) {
         super(id,name,gender,phoneNumber);
-        this.email =  email
+        this.email =  email;
     }
     public String getEmail() {
         return email;

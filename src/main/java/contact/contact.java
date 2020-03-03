@@ -1,5 +1,6 @@
 package contact;
-Public class contact {
+import java.util.Objects;
+public class contact {
     String id;
     String name;
     String gender;
