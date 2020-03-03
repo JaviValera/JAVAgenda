@@ -27,20 +27,41 @@ public class agenda {
         return contacts;
     }
 
-    public boolean savePersonalContact(String id, String name, String number, String gender, Date date) throws IOException, ParseException {
+    public boolean addProfessionalContact(String id, String name, String number, String gender, String email) {
+        boolean resul = true;
+        contact c = searchContact(id);
+        //If the contact exists as a Professional Contact, it cannot be added
+        if (c != null && c instanceof professionalContact) {
+            resul = false;
+        }
+        proContact = new professionalContact(id, name, gender, number, email);
+        contacts.add(proContact);
+
+        return resul;
+    }
+    public boolean addPersonalContact(String id, String name, String number, String gender, Date date) throws IOException, ParseException {
+        boolean resul = true;
         contact c = searchContact(id);
         //If the contact exists as a Personal Contact, it cannot be added
         if (c != null && c instanceof personalContact) {
-            return false;
+            resul = false;
         }
         perContact = new personalContact(id, name, gender, number, date);
         contacts.add(perContact);
-
-        return true;
+        return resul;
+    }
+    public boolean removeContact(String id){
+        boolean resul=false;
+        contact c = searchContact(id);
+        if(c != null) {
+            contacts.remove(c);
+            resul = true;
+        }
+            return resul;
     }
 
     public void loadPersonalContact() throws IOException, ParseException {
-        FileReader input = new FileReader("src/archivos/contactosPersonales.txt");
+        FileReader input = new FileReader("src/database/personalContact.txt");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();
 
@@ -64,7 +85,7 @@ public class agenda {
     }
 
     public void loadProfessionalContact() throws IOException {
-        FileReader input = new FileReader("src/archivos/contactosLaborales.txt");
+        FileReader input = new FileReader("src/database/professionalContact.txt");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();
 
@@ -87,21 +108,8 @@ public class agenda {
         }
     }
 
-    public boolean saveProfessionalContact(String id, String name, String number, String gender,
-                                           String email) {
-        contact c = searchContact(id);
-        //If the contact exists as a Professional Contact, it cannot be added
-        if (c != null && c instanceof professionalContact) {
-            return false;
-        }
-        proContact = new professionalContact(id, name, gender, number, email);
-        contacts.add(proContact);
-
-        return true;
-    }
-
-    public void addProfessionalContactTxt() throws IOException {
-        FileWriter file = new FileWriter("src/archivos/contactosLaborales.txt");
+    public void saveProfessionalContactTxt() throws IOException {
+        FileWriter file = new FileWriter("src/database/professionalContact.txt");
         for (contact contact : contacts) {
             if (contact instanceof professionalContact) {
                 proContact= (professionalContact) contact;
@@ -120,8 +128,8 @@ public class agenda {
         file.close();
     }
 
-    public void addPersonalContactTxt() throws IOException {
-        FileWriter file = new FileWriter("src/archivos/contactosPersonales.txt");
+    public void savePersonalContactTxt() throws IOException {
+        FileWriter file = new FileWriter("src/database/personalContact.txt");
         for (contact contact : contacts) {
             if (contact instanceof personalContact) {
                 perContact= (personalContact) contact;
