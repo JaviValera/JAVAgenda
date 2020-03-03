@@ -155,12 +155,12 @@ public class agenda {
     }
 
     public void generatePersonalContactsFile() throws IOException {
-        FileWriter w = new FileWriter(new File("personalContact.txt"));
+        FileWriter w = new FileWriter(new File("src/personalContact.txt"));
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);
         for (contact contact : contacts) {
-            if (contact instanceof professionalContact) {
+            if (contact instanceof personalContact) {
 
                 perContact = (personalContact) contact;
                 wr.write(
@@ -179,10 +179,12 @@ public class agenda {
 
         PrintWriter wr = new PrintWriter(bw);
         for (contact contact : contacts) {
-            proContact = (professionalContact) contact;
-            wr.write(
+            if (contact instanceof professionalContact) {
+                proContact = (professionalContact) contact;
+                wr.write(
                     "Name:" + proContact.getName() + " Phone:" + proContact.getPhoneNumber() + "\n"
                             + "******************************************************************* \n");
+            }
         }
         wr.close();
         bw.close();
