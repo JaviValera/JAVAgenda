@@ -61,7 +61,7 @@ public class agenda {
     }
 
     public void loadPersonalContact() throws IOException, ParseException {
-        FileReader input = new FileReader("src/database/personalContact.txt");
+        FileReader input = new FileReader("src/database/personalContact.db");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();
 
@@ -85,7 +85,7 @@ public class agenda {
     }
 
     public void loadProfessionalContact() throws IOException {
-        FileReader input = new FileReader("src/database/professionalContact.txt");
+        FileReader input = new FileReader("src/database/professionalContact.db");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();
 
@@ -109,7 +109,7 @@ public class agenda {
     }
 
     public void saveProfessionalContactTxt() throws IOException {
-        FileWriter file = new FileWriter("src/database/professionalContact.txt");
+        FileWriter file = new FileWriter("src/database/professionalContact.db");
         for (contact contact : contacts) {
             if (contact instanceof professionalContact) {
                 proContact= (professionalContact) contact;
@@ -129,7 +129,7 @@ public class agenda {
     }
 
     public void savePersonalContactTxt() throws IOException {
-        FileWriter file = new FileWriter("src/database/personalContact.txt");
+        FileWriter file = new FileWriter("src/database/personalContact.db");
         for (contact contact : contacts) {
             if (contact instanceof personalContact) {
                 perContact= (personalContact) contact;
