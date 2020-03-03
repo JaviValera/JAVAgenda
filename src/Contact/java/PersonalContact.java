@@ -8,11 +8,9 @@ Date date;
     public Date getDate() {
         return date;
     }
-
     public void setDate(String date) {
         this.date = new SimpleDateFormat("dd/MM/yyyy").parse(date);
     }
-
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
@@ -24,7 +22,7 @@ Date date;
         return Objects.hash(super.hashCode(), date);
     }
     public java.lang.String toString() {
-        return "contact{" +
+        return "personalContact{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", gender='" + gender + '\'' +
