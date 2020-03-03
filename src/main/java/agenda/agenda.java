@@ -39,7 +39,7 @@ public class agenda {
 
         return resul;
     }
-    public boolean addPersonalContact(int id, String name, int phoneNumber, String gender, Date date) throws IOException, ParseException {
+    public boolean addPersonalContact(int id, String name, int phoneNumber, String gender, Date date){
         boolean resul = true;
         contact c = searchContact(id);
         //If the contact exists as a Personal Contact, it cannot be added
@@ -58,6 +58,16 @@ public class agenda {
             resul = true;
         }
             return resul;
+    }
+
+    public void swipe() throws IOException {
+        contacts.clear();
+        savePersonalContact();
+        saveProfessionalContact();
+        File file = new File("src/personalContacts.txt");
+        file.delete();
+        file = new File("src/professionalContacts.txt");
+        file.delete();
     }
 
     public void loadPersonalContact() throws IOException, ParseException {
@@ -155,7 +165,7 @@ public class agenda {
     }
 
     public void generatePersonalContactsFile() throws IOException {
-        FileWriter w = new FileWriter(new File("src/personalContact.txt"));
+        FileWriter w = new FileWriter(new File("src/personalContacts.txt"));
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);
@@ -174,7 +184,7 @@ public class agenda {
     }
 
     public void generateProfessionalContactsFile() throws IOException {
-        FileWriter w = new FileWriter(new File("src/professionalContact.txt"));
+        FileWriter w = new FileWriter(new File("src/professionalContacts.txt"));
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);
