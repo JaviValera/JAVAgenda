@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 public class personalContact extends contact {
 Date date;
-    public personalContact(String id, String name, String gender, String phoneNumber, Date date) {
+    public personalContact(int id, String name, String gender, int phoneNumber, Date date) {
     super(id,name,gender,phoneNumber);
     this.date =  date;
     }

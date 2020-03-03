@@ -27,30 +27,30 @@ public class agenda {
         return contacts;
     }
 
-    public boolean addProfessionalContact(String id, String name, String number, String gender, String email) {
+    public boolean addProfessionalContact(int id, String name, int phoneNumber, String gender, String email) {
         boolean resul = true;
         contact c = searchContact(id);
         //If the contact exists as a Professional Contact, it cannot be added
         if (c != null && c instanceof professionalContact) {
             resul = false;
         }
-        proContact = new professionalContact(id, name, gender, number, email);
+        proContact = new professionalContact(id, name, gender, phoneNumber, email);
         contacts.add(proContact);
 
         return resul;
     }
-    public boolean addPersonalContact(String id, String name, String number, String gender, Date date) throws IOException, ParseException {
+    public boolean addPersonalContact(int id, String name, int phoneNumber, String gender, Date date) throws IOException, ParseException {
         boolean resul = true;
         contact c = searchContact(id);
         //If the contact exists as a Personal Contact, it cannot be added
         if (c != null && c instanceof personalContact) {
             resul = false;
         }
-        perContact = new personalContact(id, name, gender, number, date);
+        perContact = new personalContact(id, name, gender, phoneNumber, date);
         contacts.add(perContact);
         return resul;
     }
-    public boolean removeContact(String id){
+    public boolean removeContact(int id){
         boolean resul=false;
         contact c = searchContact(id);
         if(c != null) {
@@ -69,13 +69,13 @@ public class agenda {
 
         while (line != null) {
             String data[] = line.split("-");
-            String id = data[0];
+            int id = Integer.parseInt(data[0]);
             String name = data[1];
             String gender = data[2];
-            String number = data[3];
+            int phoneNumber = Integer.parseInt(data[3]);
             Date date = new SimpleDateFormat("dd/MM/yyyy").parse(data[4]);
 
-            perContact = new personalContact(id, name, gender, number, date);
+            perContact = new personalContact(id, name, gender, phoneNumber, date);
             contacts.add(perContact);
 
 
@@ -93,14 +93,14 @@ public class agenda {
 
         while (line != null) {
             String data[] = line.split("-");
-            String id = data[0];
+            int id = Integer.parseInt(data[0]);
             String name = data[1];
             String gender = data[2];
-            String number = data[3];
+            int phoneNumber = Integer.parseInt(data[3]);
             String email = data[4];
 
 
-            proContact = new professionalContact(id, name, gender, number, email);
+            proContact = new professionalContact(id, name, gender, phoneNumber, email);
             contacts.add(proContact);
 
 
@@ -108,7 +108,7 @@ public class agenda {
         }
     }
 
-    public void saveProfessionalContactTxt() throws IOException {
+    public void saveProfessionalContact() throws IOException {
         FileWriter file = new FileWriter("src/database/professionalContact.db");
         for (contact contact : contacts) {
             if (contact instanceof professionalContact) {
@@ -128,7 +128,7 @@ public class agenda {
         file.close();
     }
 
-    public void savePersonalContactTxt() throws IOException {
+    public void savePersonalContact() throws IOException {
         FileWriter file = new FileWriter("src/database/personalContact.db");
         for (contact contact : contacts) {
             if (contact instanceof personalContact) {
@@ -145,17 +145,17 @@ public class agenda {
         file.close();
     }
 
-    public contact searchContact(String id) {
+    public contact searchContact(int id) {
         for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getId().equals(id)) {
+            if (contacts.get(i).getId() == id) {
                 return contacts.get(i);
             }
         }
         return null;
     }
 
-    public void generatePersonalContactsFile(File selectedFile) throws IOException {
-        FileWriter w = new FileWriter(selectedFile);
+    public void generatePersonalContactsFile() throws IOException {
+        FileWriter w = new FileWriter(new File("personalContact.txt"));
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);
@@ -173,8 +173,8 @@ public class agenda {
         bw.close();
     }
 
-    public void generateProfessionalContactsFile(File selectedFile) throws IOException {
-        FileWriter w = new FileWriter(selectedFile);
+    public void generateProfessionalContactsFile() throws IOException {
+        FileWriter w = new FileWriter(new File("src/professionalContact.txt"));
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);

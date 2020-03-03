@@ -2,7 +2,7 @@ package contact;
 import java.util.Objects;
 public class professionalContact extends contact {
     String email;
-    public professionalContact(String id, String name, String gender, String phoneNumber, String email) {
+    public professionalContact(int id, String name, String gender, int phoneNumber, String email) {
         super(id,name,gender,phoneNumber);
         this.email =  email;
     }

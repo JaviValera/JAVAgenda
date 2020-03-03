@@ -1,23 +1,23 @@
 package contact;
 import java.util.Objects;
 public class contact {
-    String id;
+    int id;
     String name;
     String gender;
-    String phoneNumber;
+    int phoneNumber;
 
-    public contact(String id, String name, String gender, String phoneNumber) {
+    public contact(int id, String name, String gender, int phoneNumber) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,11 +37,11 @@ public class contact {
         this.gender = gender;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -50,7 +50,7 @@ public class contact {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         contact contact = (contact) object;
-        return id.equals(contact.id) &&
+        return id==(contact.id) &&
                 name.equals(contact.name) &&
                 java.util.Objects.equals(gender, contact.gender) &&
                 java.util.Objects.equals(phoneNumber, contact.phoneNumber);
