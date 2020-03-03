@@ -1,3 +1,4 @@
+package contact;
 Public class contact {
     String id;
     String name;
