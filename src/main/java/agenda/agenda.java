@@ -1,4 +1,5 @@
 package agenda;
+import contact.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,39 +7,39 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+public class agenda {
 
-public class Agenda {
+    private ArrayList<contact> contacts;
+    private professionalContact proContact;
+    private personalContact perContact;
 
-    private ArrayList<Contact> contacts;
-    private ProfessionalContact proContact;
-    private PersonalContact perContact;
-
-    public Agenda() {
-        contacts = new ArrayList<Contact>();
-
+    public agenda() {
+        contacts = new ArrayList<contact>();
 
     }
 
-    public ArrayList<Contact> getContacts() {
+    public ArrayList<contact> getContacts() {
         return contacts;
     }
 
-    public boolean savePersonalContact(String id, String name, String number, String gender, Date date) throws IOException {
-        Contact c = searchContact(id);
+    public boolean savePersonalContact(String id, String name, String number, String gender, Date date) throws IOException, ParseException {
+        contact c = searchContact(id);
         //If the contact exists as a Personal Contact, it cannot be added
-        if (c != null && c instanceof PersonalContact) {
+        if (c != null && c instanceof personalContact) {
             return false;
         }
-        perContact = new PersonalContact(id, name, gender, number, date);
+        perContact = new personalContact(id, name, gender, number, date);
         contacts.add(perContact);
 
         return true;
     }
 
-    public void loadPersonalContact() throws IOException {
+    public void loadPersonalContact() throws IOException, ParseException {
         FileReader input = new FileReader("src/archivos/contactosPersonales.txt");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();
@@ -46,19 +47,14 @@ public class Agenda {
         //load info
 
         while (line != null) {
-            String data[] = line.split("/");
+            String data[] = line.split("-");
             String id = data[0];
             String name = data[1];
             String gender = data[2];
             String number = data[3];
-            String date = data[4];
+            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(data[4]);
 
-            String data2[] = date.split("/");
-            int day = Integer.parseInt(data2[0]);
-            int month = Integer.parseInt(data2[1]);
-            int year = Integer.parseInt(data2[2]);
-            Date date1 = new Date(day, month, year);
-            perContact = new PersonalContact(id, name, gender, number, date1);
+            perContact = new personalContact(id, name, gender, number, date);
             contacts.add(perContact);
 
 
@@ -75,15 +71,15 @@ public class Agenda {
         //load info
 
         while (line != null) {
-            String data[] = line.split("/");
+            String data[] = line.split("-");
             String id = data[0];
             String name = data[1];
             String gender = data[2];
             String number = data[3];
-            String mail = data[4];
+            String email = data[4];
 
 
-            proContact = new ProfessionalContact(id, name, gender, number, mail);
+            proContact = new professionalContact(id, name, gender, number, email);
             contacts.add(proContact);
 
 
@@ -92,13 +88,13 @@ public class Agenda {
     }
 
     public boolean saveProfessionalContact(String id, String name, String number, String gender,
-                                           String mail) {
-        Contact c = searchContact(id);
+                                           String email) {
+        contact c = searchContact(id);
         //If the contact exists as a Professional Contact, it cannot be added
-        if (c != null && c instanceof ProfessionalContact) {
+        if (c != null && c instanceof professionalContact) {
             return false;
         }
-        proContact = new ProfessionalContact(id, name, gender, number, mail);
+        proContact = new professionalContact(id, name, gender, number, email);
         contacts.add(proContact);
 
         return true;
@@ -106,16 +102,16 @@ public class Agenda {
 
     public void addProfessionalContactTxt() throws IOException {
         FileWriter file = new FileWriter("src/archivos/contactosLaborales.txt");
-        for (Contact contact : contacts) {
-            if (contact instanceof ProfessionalContact) {
-                ContactoLaboral contact = (ProfessionalContact) contact;
+        for (contact contact : contacts) {
+            if (contact instanceof professionalContact) {
+                proContact= (professionalContact) contact;
 
                 file.write(
-                        contact.getId() + "/"
-                                + contact.getName() + "/"
-                                + contact.getGender() + "/"
-                                + contact.getPhoneNumber() + "/"
-                                + contact.getMail() + "\n");
+                        proContact.getId() + "-"
+                                + proContact.getName() + "-"
+                                + proContact.getGender() + "-"
+                                + proContact.getPhoneNumber() + "-"
+                                + proContact.getEmail() + "\n");
             }
 
 
@@ -124,26 +120,24 @@ public class Agenda {
         file.close();
     }
 
-    public void agregarContactoPersonalTxt() throws IOException {
-        FileWriter archivo = new FileWriter("src/archivos/contactosPersonales.txt");
-        for (Contacto contact : contacts) {
-            if (contact instanceof ContactoPersonal) {
-                perContact = (ContactoPersonal) contact;
+    public void addPersonalContactTxt() throws IOException {
+        FileWriter file = new FileWriter("src/archivos/contactosPersonales.txt");
+        for (contact contact : contacts) {
+            if (contact instanceof personalContact) {
+                perContact= (personalContact) contact;
 
-                archivo.write(
-                        perContact.getId() + "/"
-                                + perContact.getNombre() + "/"
-                                + perContact.getGenero() + "/"
-                                + perContact.getTelefono() + "/"
-                                + perContact.getFechaCumpleaños().getDia() + "-"
-                                + perContact.getFechaCumpleaños().getMes() + "-"
-                                + perContact.getFechaCumpleaños().getAnio() + "\n");
+                file.write(
+                        perContact.getId() + "-"
+                                + perContact.getName() + "-"
+                                + perContact.getGender() + "-"
+                                + perContact.getPhoneNumber() + "-"
+                                + perContact.getDate() + "\n");
             }
         }
-        archivo.close();
+        file.close();
     }
 
-    public Contacto searchContact(String id) {
+    public contact searchContact(String id) {
         for (int i = 0; i < contacts.size(); i++) {
             if (contacts.get(i).getId().equals(id)) {
                 return contacts.get(i);
@@ -152,18 +146,18 @@ public class Agenda {
         return null;
     }
 
-    public void generarArchivoContactosPersonales(File selectedFile) throws IOException {
+    public void generatePersonalContactsFile(File selectedFile) throws IOException {
         FileWriter w = new FileWriter(selectedFile);
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);
-        for (Contacto contacto : contacts) {
-            if (contacto instanceof ContactoPersonal) {
+        for (contact contact : contacts) {
+            if (contact instanceof professionalContact) {
 
-                perContact = (ContactoPersonal) contacto;
+                perContact = (personalContact) contact;
                 wr.write(
-                        "Numbre:" + perContact.nombre + " Telefono:" + perContact.getTelefono() + "\n"
-                                + "******************************************************************* \n");//escribimos en el archivo
+                        "Name:" + perContact.getName() + " Phone:" + perContact.getPhoneNumber() + "\n"
+                                + "******************************************************************* \n");
 
             }
         }
@@ -171,17 +165,16 @@ public class Agenda {
         bw.close();
     }
 
-    public void generarArchivoContactosLaborales(File selectedFile) throws IOException {
+    public void generateProfessionalContactsFile(File selectedFile) throws IOException {
         FileWriter w = new FileWriter(selectedFile);
         BufferedWriter bw = new BufferedWriter(w);
 
         PrintWriter wr = new PrintWriter(bw);
-        for (Contacto contacto : contacts) {
-            proContact = (ContactoLaboral) contacto;
+        for (contact contact : contacts) {
+            proContact = (professionalContact) contact;
             wr.write(
-                    "Numbre:" + proContact.nombre + " Telefono:" + proContact.getTelefono() + "\n"
-                            + "******************************************************************* \n");//escribimos en el archivo
-
+                    "Name:" + proContact.getName() + " Phone:" + proContact.getPhoneNumber() + "\n"
+                            + "******************************************************************* \n");
         }
         wr.close();
         bw.close();
