@@ -20,39 +20,31 @@ public class agenda {
 
     public agenda() {
         contacts = new ArrayList<contact>();
-
     }
 
     public ArrayList<contact> getContacts() {
         return contacts;
     }
 
-    public boolean addProfessionalContact(int id, String name, int phoneNumber, String gender, String email) {
+    public boolean addProfessionalContact(professionalContact newContact) {
         boolean resul = true;
-        contact c = searchContact(id);
+        contact c = searchContact(newContact);
         //If the contact exists as a Professional Contact, it cannot be added
-        if (c != null && c instanceof professionalContact) {
-            resul = false;
-        }
-        proContact = new professionalContact(id, name, gender, phoneNumber, email);
-        contacts.add(proContact);
-
+        if (c != null && c instanceof professionalContact) resul = false;
+        else contacts.add(newContact);
         return resul;
     }
-    public boolean addPersonalContact(int id, String name, int phoneNumber, String gender, Date date){
+    public boolean addPersonalContact(personalContact newContact){
         boolean resul = true;
-        contact c = searchContact(id);
+        contact c = searchContact(newContact);
         //If the contact exists as a Personal Contact, it cannot be added
-        if (c != null && c instanceof personalContact) {
-            resul = false;
-        }
-        perContact = new personalContact(id, name, gender, phoneNumber, date);
-        contacts.add(perContact);
+        if (c != null && c instanceof personalContact) resul = false;
+        else contacts.add(newContact);
         return resul;
     }
-    public boolean removeContact(int id){
+    public boolean removeContact(contact contact){
         boolean resul=false;
-        contact c = searchContact(id);
+        contact c = searchContact(contact);
         if(c != null) {
             contacts.remove(c);
             resul = true;
@@ -155,9 +147,9 @@ public class agenda {
         file.close();
     }
 
-    public contact searchContact(int id) {
+    public contact searchContact(contact contact) {
         for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getId() == id) {
+            if (contacts.get(i) == contact) {
                 return contacts.get(i);
             }
         }
