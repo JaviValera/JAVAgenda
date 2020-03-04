@@ -4,12 +4,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 class contactTest {
     contact contact;
-    private int id = 1;
-    private String name = "testname";
-    private String gender = "testgender";
-    private int phoneNumber = 1;
+    private int id;
+    private String name;
+    private String gender;
+    private int phoneNumber;
     @BeforeEach
     void setUp() {
+        id=1;
+        name="testname";
+        gender="testgender";
+        phoneNumber=1;
     contact = new contact(id,name,gender,phoneNumber);
     }
 
