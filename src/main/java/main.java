@@ -27,6 +27,6 @@ public class main {
         agenda.generateProfessionalContactsFile();
         if (agenda.searchContact(4) != null)
             System.out.println(agenda.searchContact(4).toString());
-        agenda.swipe();
+        agenda.wipe();
     }
 }

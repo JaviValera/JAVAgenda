@@ -23,7 +23,7 @@ class agendaTest {
     }
 
     @Test
-    void swipe() {
+    void wipe() {
     }
 
     @Test
