@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class main {
-    public static void main(String[] args) throws ParseException, IOException {
+    public static void main(String[] args) throws IOException {
         agenda agenda = new agenda();
         personalContact per1 = new personalContact(1,"Mikel","Male",987654321, "06/11/1996");
         personalContact per3 = new personalContact(2,"James","Female",12345678, "15/07/1990");
