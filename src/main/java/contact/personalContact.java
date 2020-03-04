@@ -4,15 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 public class personalContact extends contact {
-private Date date;
-    public personalContact(int id, String name, String gender, int phoneNumber, Date date) {
+private String date;
+    public personalContact(int id, String name, String gender, int phoneNumber, String date) {
     super(id,name,gender,phoneNumber);
     this.date =  date;
     }
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
     @Override
@@ -21,7 +21,7 @@ private Date date;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         personalContact that = (personalContact) o;
-        return date != null ? date.equals(that.date) : that.date == null;
+        return date != null ? date==that.date : that.date == null;
     }
     @Override
     public int hashCode() {

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -52,8 +53,12 @@ public class agenda {
             return resul;
     }
 
-    public void wipe() throws IOException {
+    public void wipeContacts(){
         contacts.clear();
+    }
+
+    public void wipe() throws IOException {
+        wipeContacts();
         savePersonalContact();
         saveProfessionalContact();
         File file = new File("src/personalContacts.txt");
@@ -75,8 +80,7 @@ public class agenda {
             String name = data[1];
             String gender = data[2];
             int phoneNumber = Integer.parseInt(data[3]);
-            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(data[4]);
-
+            String date = data[4];
             perContact = new personalContact(id, name, gender, phoneNumber, date);
             contacts.add(perContact);
 
