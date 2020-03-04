@@ -13,12 +13,13 @@ public class main {
         agenda.addPersonalContact(2,"James",123456789,"Male", sdf.parse("15/07/1990"));
         agenda.addPersonalContact(3,"Tyler",123987465,"Male", sdf.parse("24/02/2000"));
         agenda.addProfessionalContact(4,"Xerxe",070707070,"Male", "xerxe@og.com");
-        agenda.addProfessionalContact(5,"Caps",080808080,"Male", "caps@g2.com");
-        agenda.addProfessionalContact(6,"Denyk",090909090,"Male", "denyk@misfits.com");
+        agenda.addProfessionalContact(5,"Caps",80808080,"Male", "caps@g2.com");
+        agenda.addProfessionalContact(6,"Denyk",90909090,"Male", "denyk@misfits.com");
         agenda.savePersonalContact();
         agenda.saveProfessionalContact();
         agenda.generatePersonalContactsFile();
         agenda.generateProfessionalContactsFile();
         agenda.searchContact(4).toString();
+        agenda.wipe();
     }
 }

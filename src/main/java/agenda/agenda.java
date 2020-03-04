@@ -60,7 +60,7 @@ public class agenda {
             return resul;
     }
 
-    public void swipe() throws IOException {
+    public void wipe() throws IOException {
         contacts.clear();
         savePersonalContact();
         saveProfessionalContact();
