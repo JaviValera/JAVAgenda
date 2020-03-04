@@ -13,9 +13,9 @@ public class main {
         personalContact per1 = new personalContact(1,"Mikel","Male",987654321, sdf.parse("06/11/1996"));
         personalContact per3 = new personalContact(2,"James","Female",12345678, sdf.parse("15/07/1990"));
         personalContact per2 = new personalContact(3,"Tyler","Other",12341234, sdf.parse("24/02/2000"));
-        professionalContact pro1 = new professionalContact(4,"Xerxe","Male",70707070, "xerxe@og.com");
-        professionalContact pro2 = new professionalContact(5,"Caps","Female",80808080, "xerxe@og.com");
-        professionalContact pro3 = new professionalContact(6,"Denyk","Other",90909090, "xerxe@og.com");
+        professionalContact pro1 = new professionalContact(4,"Xerxe","Male",70707070, "xerxe@og.pro");
+        professionalContact pro2 = new professionalContact(5,"Caps","Female",80808080, "caps@g2.pro");
+        professionalContact pro3 = new professionalContact(6,"Denyk","Other",90909090, "denyk@misfits.pro");
         agenda.addPersonalContact(per1);
         agenda.addPersonalContact(per2);
         agenda.addPersonalContact(per3);
@@ -26,7 +26,7 @@ public class main {
         agenda.saveProfessionalContact();
         agenda.generatePersonalContactsFile();
         agenda.generateProfessionalContactsFile();
-        agenda.searchContact(pro1).toString();
+        System.out.println(agenda.searchContact(pro1).toString());
         agenda.wipe();
     }
 }
