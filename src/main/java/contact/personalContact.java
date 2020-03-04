@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 public class personalContact extends contact {
-Date date;
+private Date date;
     public personalContact(int id, String name, String gender, int phoneNumber, Date date) {
     super(id,name,gender,phoneNumber);
     this.date =  date;
@@ -18,10 +18,10 @@ Date date;
     }
     public java.lang.String toString() {
         return "personalContact{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", name='" + this.getName() + '\'' +
+                ", gender='" + this.getGender() + '\'' +
+                ", phoneNumber='" + this.getPhoneNumber() + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }

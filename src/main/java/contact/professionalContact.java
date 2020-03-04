@@ -1,7 +1,7 @@
 package contact;
 import java.util.Objects;
 public class professionalContact extends contact {
-    String email;
+    private String email;
     public professionalContact(int id, String name, String gender, int phoneNumber, String email) {
         super(id,name,gender,phoneNumber);
         this.email =  email;
@@ -25,10 +25,10 @@ public class professionalContact extends contact {
     }
     public java.lang.String toString() {
         return "professionalContact{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                "id='" + this.getId() + '\'' +
+                ", name='" + this.getName() + '\'' +
+                ", gender='" + this.getGender() + '\'' +
+                ", phoneNumber='" + this.getPhoneNumber() + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

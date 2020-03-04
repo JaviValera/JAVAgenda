@@ -1,10 +1,10 @@
 package contact;
 import java.util.Objects;
 public class contact {
-    int id;
-    String name;
-    String gender;
-    int phoneNumber;
+    private  int id;
+    private String name;
+    private String gender;
+    private int phoneNumber;
 
     public contact(int id, String name, String gender, int phoneNumber) {
         this.id = id;
