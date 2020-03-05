@@ -58,12 +58,13 @@ class agendaTest {
 
     @Test
     void removeContact() {
-        agenda.removeContact(per1);
+        assertTrue(agenda.removeContact(per1));
         assertEquals(null,agenda.searchContact(per1));
     }
 
     @Test
     void wipeContacts(){
+        assertFalse(agenda.getContacts().size()==0);
         agenda.wipeContacts();
         contacts.clear();
         assertTrue(contacts.equals(agenda.getContacts()));
@@ -71,6 +72,7 @@ class agendaTest {
 
     @Test
     void wipe() throws IOException {
+        assertFalse(agenda.getContacts().size()==0);
         agenda.wipe();
         contacts.clear();
         assertTrue(contacts.equals(agenda.getContacts()));
@@ -111,11 +113,6 @@ class agendaTest {
     @Test
     void searchContactSuccess() { assertTrue(pro1.equals(agenda.searchContact(pro1)));
     }
-
-    @Test
-    void searchContactFail() { assertFalse(null!=agenda.searchContact(per3));
-    }
-
     @Test
     void generatePersonalContactsFile() throws IOException {
         agenda.generatePersonalContactsFile();
