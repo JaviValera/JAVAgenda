@@ -43,6 +43,28 @@ public class agenda {
         else contacts.add(newContact);
         return resul;
     }
+
+    public boolean modify(contact contact,int value, String data){
+        boolean resul=true;
+        switch (value){
+            case 1:
+                contact.setId(Integer.parseInt(data));
+                break;
+            case 2:
+                contact.setName(data);
+                break;
+            case 3:
+                contact.setGender(data);
+                break;
+            case 4:
+                contact.setPhoneNumber(Integer.parseInt(data));
+                break;
+            default:
+                resul=false;
+        }
+        return resul;
+    }
+
     public boolean removeContact(contact contact){
         boolean resul=false;
         contact c = searchContact(contact);
