@@ -2,17 +2,16 @@ package agenda;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import contact.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import static org.apache.commons.io.FileUtils.contentEquals;
 import static org.junit.jupiter.api.Assertions.*;
+import org.apache.commons.io.FileUtils;
 
 class agendaTest {
     agenda agenda;
@@ -98,19 +97,15 @@ class agendaTest {
     @Test
     void saveProfessionalContact() throws IOException {
         File aux = new File("src/database/professionalContact.db");
-        byte[] f1 = Files.readAllBytes(Paths.get(fileProdb.getPath()));
-        byte[] f2 = Files.readAllBytes(Paths.get(aux.getPath()));
         agenda.saveProfessionalContact();
-        assertEquals(f1.toString(),f2.toString());
+        assertTrue(contentEquals(aux, fileProdb));
     }
 
     @Test
     void savePersonalContact() throws IOException {
         File aux = new File("src/database/personalContact.db");
-        byte[] f1 = Files.readAllBytes(Paths.get(filePerdb.getPath()));
-        byte[] f2 = Files.readAllBytes(Paths.get(aux.getPath()));
         agenda.savePersonalContact();
-        assertEquals(f1.toString(),f2.toString());
+        assertTrue(contentEquals(aux,filePerdb));
     }
 
     @Test
@@ -125,19 +120,15 @@ class agendaTest {
     void generatePersonalContactsFile() throws IOException {
         agenda.generatePersonalContactsFile();
         File aux = new File("src/personalContacts.txt");
-        byte[] f1 = Files.readAllBytes(Paths.get(filePerTxt.getPath()));
-        byte[] f2 = Files.readAllBytes(Paths.get(aux.getPath()));
         agenda.savePersonalContact();
-        assertEquals(f1.toString(),f2.toString());
+        assertTrue(FileUtils.contentEquals(aux,filePerTxt));
     }
 
     @Test
     void generateProfessionalContactsFile() throws IOException {
         agenda.generateProfessionalContactsFile();
         File aux = new File("src/professionalContacts.txt");
-        byte[] f1 = Files.readAllBytes(Paths.get(filePerTxt.getPath()));
-        byte[] f2 = Files.readAllBytes(Paths.get(aux.getPath()));
         agenda.saveProfessionalContact();
-        assertEquals(f1.toString(),f2.toString());
+        assertTrue(FileUtils.contentEquals(aux,fileProTxt));
     }
 }

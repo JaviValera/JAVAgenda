@@ -52,17 +52,14 @@ class contactTest {
     contact.setGender(gender);
     assertEquals(gender,contact.getGender());
     }
-
     @Test
     void getPhoneNumber() {
         assertEquals(phoneNumber,contact.getPhoneNumber());
     }
-
     @Test
     void setPhoneNumber() {
         phoneNumber = 2;
         contact.setPhoneNumber(phoneNumber);
         assertEquals(phoneNumber,contact.getPhoneNumber());
     }
-
 }
