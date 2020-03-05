@@ -153,7 +153,7 @@ public class agenda {
 
     public contact searchContact(contact contact) {
         for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i) == contact) {
+            if (contacts.get(i).getId() == contact.getId()) {
                 return contacts.get(i);
             }
         }
