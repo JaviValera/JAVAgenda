@@ -37,7 +37,7 @@ public class main {
         System.out.println(agenda.searchContact(pro1).toString());
         agenda.modify(pro1,0,"pepe");
         System.out.println(agenda.searchContact(pro1).toString());
-        //agenda.mergeAgenda(agenda1);
+        agenda.mergeAgenda(agenda1);
         agenda.wipe();
     }
 }

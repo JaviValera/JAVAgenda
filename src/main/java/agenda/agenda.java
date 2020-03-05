@@ -217,4 +217,33 @@ public class agenda {
         wr.close();
         bw.close();
     }
+    private int findfreeid(){
+        boolean notfound=false;
+    int i=0;
+        do{
+            i++;
+            notfound=false;
+            for (contact n : this.contacts) {
+                if (n.getId() == i) {
+                    notfound = true;
+                }
+            }
+        }while(notfound);
+        return i;
+    }
+    public void mergeAgenda(agenda agenda){
+       agenda.contacts.forEach((n)->{
+           if(n instanceof personalContact) {
+               personalContact aux = (personalContact) n;
+               aux.setId(this.findfreeid());
+               addPersonalContact(aux);
+           }
+           else{
+               professionalContact aux = (professionalContact) n;
+               aux.setId(this.findfreeid());
+               addProfessionalContact(aux);
+           }
+
+       });
+    }
 }
