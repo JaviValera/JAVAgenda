@@ -122,6 +122,7 @@ class agendaTest {
         File aux = new File("src/personalContacts.txt");
         agenda.savePersonalContact();
         assertTrue(FileUtils.contentEquals(aux,filePerTxt));
+        wipe();
     }
 
     @Test
@@ -130,5 +131,6 @@ class agendaTest {
         File aux = new File("src/professionalContacts.txt");
         agenda.saveProfessionalContact();
         assertTrue(FileUtils.contentEquals(aux,fileProTxt));
+        wipe();
     }
 }
