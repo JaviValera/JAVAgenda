@@ -44,14 +44,14 @@ class agendaTest {
     void addProfessionalContact() {
         pro2 = new professionalContact(3,"name3","Male",12345,"mail@bth.com");
         agenda.addProfessionalContact(pro2);
-        assertTrue(pro2.equals(agenda.searchContact(pro2)));
+        assertEquals(pro2, agenda.searchContact(pro2));
     }
 
     @Test
     void addPersonalContact() {
         per2 = new personalContact(4,"name4","Other",123456,"01/01/1991");
        agenda.addPersonalContact(per2);
-       assertTrue(per2.equals(agenda.searchContact(per2)));
+        assertEquals(per2, agenda.searchContact(per2));
     }
 
     @Test
@@ -69,23 +69,23 @@ class agendaTest {
     @Test
     void removeContact() {
         assertTrue(agenda.removeContact(per1));
-        assertEquals(null,agenda.searchContact(per1));
+        assertNull(agenda.searchContact(per1));
     }
 
     @Test
     void wipeContacts(){
-        assertFalse(agenda.getContacts().size()==0);
+        assertNotEquals(0, agenda.getContacts().size());
         agenda.wipeContacts();
         contacts.clear();
-        assertTrue(contacts.equals(agenda.getContacts()));
+        assertEquals(contacts, agenda.getContacts());
     }
 
     @Test
     void wipe() throws IOException {
-        assertFalse(agenda.getContacts().size()==0);
+        assertNotEquals(0, agenda.getContacts().size());
         agenda.wipe();
         contacts.clear();
-        assertTrue(contacts.equals(agenda.getContacts()));
+        assertEquals(contacts, agenda.getContacts());
     }
 
     @Test
@@ -121,7 +121,8 @@ class agendaTest {
     }
 
     @Test
-    void searchContactSuccess() { assertTrue(pro1.equals(agenda.searchContact(pro1)));
+    void searchContactSuccess() {
+        assertEquals(pro1, agenda.searchContact(pro1));
     }
     @Test
     void generatePersonalContactsFile() throws IOException {
