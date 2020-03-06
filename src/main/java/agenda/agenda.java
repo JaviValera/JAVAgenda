@@ -29,7 +29,7 @@ public class agenda {
 
     public boolean addProfessionalContact(professionalContact newContact) {
         boolean resul = true;
-        contact c = searchContact(newContact);
+        contact c = searchContact(newContact.getId());
         //If the contact exists as a Professional Contact, it cannot be added
         if (c != null && c instanceof professionalContact) resul = false;
         else contacts.add(newContact);
@@ -37,27 +37,27 @@ public class agenda {
     }
     public boolean addPersonalContact(personalContact newContact){
         boolean resul = true;
-        contact c = searchContact(newContact);
+        contact c = searchContact(newContact.getId());
         //If the contact exists as a Personal Contact, it cannot be added
         if (c != null && c instanceof personalContact) resul = false;
         else contacts.add(newContact);
         return resul;
     }
 
-    public boolean modify(contact contact,int value, String data){
+    public boolean modify(int id, int value, String data){
         boolean resul=true;
         switch (value){
             case 1:
-                contact.setId(Integer.parseInt(data));
+                searchContact(id).setId(Integer.parseInt(data));
                 break;
             case 2:
-                contact.setName(data);
+                searchContact(id).setName(data);
                 break;
             case 3:
-                contact.setGender(data);
+                searchContact(id).setGender(data);
                 break;
             case 4:
-                contact.setPhoneNumber(Integer.parseInt(data));
+                searchContact(id).setPhoneNumber(Integer.parseInt(data));
                 break;
             default:
                 resul=false;
@@ -65,9 +65,9 @@ public class agenda {
         return resul;
     }
 
-    public boolean removeContact(contact contact){
+    public boolean removeContact(int id){
         boolean resul=false;
-        contact c = searchContact(contact);
+        contact c = searchContact(id);
         if(c != null) {
             contacts.remove(c);
             resul = true;
@@ -89,7 +89,7 @@ public class agenda {
         file.delete();
     }
 
-    public void loadPersonalContact() throws IOException, ParseException {
+    public void loadPersonalContact() throws IOException {
         FileReader input = new FileReader("src/database/personalContact.db");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();
@@ -173,9 +173,9 @@ public class agenda {
         file.close();
     }
 
-    public contact searchContact(contact contact) {
+    public contact searchContact(int id) {
         for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getId() == contact.getId()) {
+            if (contacts.get(i).getId() == id) {
                 return contacts.get(i);
             }
         }

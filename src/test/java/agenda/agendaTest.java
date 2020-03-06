@@ -46,32 +46,32 @@ class agendaTest {
     void addProfessionalContact() {
         pro2 = new professionalContact(3,"name3","Male",12345,"mail@bth.com");
         agenda.addProfessionalContact(pro2);
-        assertTrue(pro2.equals(agenda.searchContact(pro2)));
+        assertTrue(pro2.equals(agenda.searchContact(pro2.getId())));
     }
 
     @Test
     void addPersonalContact() throws ParseException {
         per2 = new personalContact(4,"name4","Other",123456,"01/01/1991");
        agenda.addPersonalContact(per2);
-       assertTrue(per2.equals(agenda.searchContact(per2)));
+       assertTrue(per2.equals(agenda.searchContact(per2.getId())));
     }
 
     @Test
     void modify(){
-        agenda.modify(per1,1,"99");
+        agenda.modify(per1.getId(),1,"99");
         assertEquals(99,per1.getId());
-        agenda.modify(per1,2,"NameTest");
+        agenda.modify(per1.getId(),2,"NameTest");
         assertEquals("NameTest",per1.getName());
-        agenda.modify(per1,3,"Gender");
+        agenda.modify(per1.getId(),3,"Gender");
         assertEquals("Gender",per1.getGender());
-        agenda.modify(per1,4,"1234567890");
+        agenda.modify(per1.getId(),4,"1234567890");
         assertEquals(1234567890,per1.getPhoneNumber());
     }
 
     @Test
     void removeContact() {
-        assertTrue(agenda.removeContact(per1));
-        assertEquals(null,agenda.searchContact(per1));
+        assertTrue(agenda.removeContact(per1.getId()));
+        assertEquals(null,agenda.searchContact(per1.getId()));
     }
 
     @Test
@@ -123,7 +123,7 @@ class agendaTest {
     }
 
     @Test
-    void searchContactSuccess() { assertTrue(pro1.equals(agenda.searchContact(pro1)));
+    void searchContactSuccess() { assertTrue(pro1.equals(agenda.searchContact(pro1.getId())));
     }
     @Test
     void generatePersonalContactsFile() throws IOException {

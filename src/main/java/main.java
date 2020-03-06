@@ -26,17 +26,17 @@ public class main {
         agenda.saveProfessionalContact();
         agenda.generatePersonalContactsFile();
         agenda.generateProfessionalContactsFile();
-        System.out.println(agenda.searchContact(pro1).toString());
-        agenda.modify(pro1,1,"99");
-        System.out.println(agenda.searchContact(pro1).toString());
-        agenda.modify(pro1,2,"pepe");
-        System.out.println(agenda.searchContact(pro1).toString());
-        agenda.modify(pro1,3,"tanque apache");
-        System.out.println(agenda.searchContact(pro1).toString());
-        agenda.modify(pro1,4,"112");
-        System.out.println(agenda.searchContact(pro1).toString());
-        agenda.modify(pro1,0,"pepe");
-        System.out.println(agenda.searchContact(pro1).toString());
+        System.out.println(agenda.searchContact(pro1.getId()).toString());
+        agenda.modify(4,1,"99");
+        System.out.println(agenda.searchContact(pro1.getId()).toString());
+        agenda.modify(99,2,"pepe");
+        System.out.println(agenda.searchContact(pro1.getId()).toString());
+        agenda.modify(99,3,"tanque apache");
+        System.out.println(agenda.searchContact(pro1.getId()).toString());
+        agenda.modify(99,4,"112");
+        System.out.println(agenda.searchContact(pro1.getId()).toString());
+        agenda.modify(99,0,"pepe");
+        System.out.println(agenda.searchContact(pro1.getId()).toString());
         agenda.mergeAgenda(agenda1);
         agenda.wipe();
     }
