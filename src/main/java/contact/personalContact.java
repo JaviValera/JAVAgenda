@@ -1,8 +1,5 @@
 package contact;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
+
 public class personalContact extends contact {
 private String date;
     public personalContact(int id, String name, String gender, int phoneNumber, String date) {

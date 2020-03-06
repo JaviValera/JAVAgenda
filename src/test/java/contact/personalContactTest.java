@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +11,7 @@ class personalContactTest  {
     personalContact personal;
     private String date;
     @BeforeEach
-    void setUp() throws ParseException {
+    void setUp() {
         int id = 1;
         String name = "testname";
         String gender = "testgender";

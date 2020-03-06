@@ -8,10 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class agenda {
 
@@ -89,7 +86,7 @@ public class agenda {
         file.delete();
     }
 
-    public void loadPersonalContact() throws IOException, ParseException {
+    public void loadPersonalContact() throws IOException {
         FileReader input = new FileReader("src/database/personalContact.db");
         BufferedReader file = new BufferedReader(input);
         String line = file.readLine();

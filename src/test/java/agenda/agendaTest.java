@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import contact.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -16,12 +14,13 @@ import org.apache.commons.io.FileUtils;
 class agendaTest {
     agenda agenda;
     File filePerdb,fileProdb,filePerTxt,fileProTxt;
-    personalContact per1,per2,per3;
+    personalContact per1;
+    personalContact per2;
     professionalContact pro1,pro2;
     ArrayList<contact> contacts;
 
     @BeforeEach
-    void setUp() throws ParseException {
+    void setUp() {
         agenda = new agenda();
         filePerdb = new File("src/test/personalContactTest.db");
         fileProdb = new File("src/test/professionalContactTest.db");
@@ -29,7 +28,6 @@ class agendaTest {
         fileProTxt = new File("src/test/professionalContactsTest.txt");
         contacts = new ArrayList<contact>();
         per1 = new personalContact(1,"name1","Female",123,"01/01/1991");
-        per3 = new personalContact(-1,"fail","Male",22222,"02/02/1992");
         pro1 = new professionalContact(2,"name2","Other",1234,"mail@mail.com");
         agenda.addPersonalContact(per1);
         agenda.addProfessionalContact(pro1);
@@ -50,7 +48,7 @@ class agendaTest {
     }
 
     @Test
-    void addPersonalContact() throws ParseException {
+    void addPersonalContact() {
         per2 = new personalContact(4,"name4","Other",123456,"01/01/1991");
        agenda.addPersonalContact(per2);
        assertTrue(per2.equals(agenda.searchContact(per2)));
