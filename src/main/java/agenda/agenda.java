@@ -28,7 +28,7 @@ public class agenda {
         boolean resul = true;
         contact c = searchContact(newContact);
         //If the contact exists as a Professional Contact, it cannot be added
-        if (c != null && c instanceof professionalContact) resul = false;
+        if (c instanceof professionalContact) resul = false;
         else contacts.add(newContact);
         return resul;
     }
@@ -36,7 +36,7 @@ public class agenda {
         boolean resul = true;
         contact c = searchContact(newContact);
         //If the contact exists as a Personal Contact, it cannot be added
-        if (c != null && c instanceof personalContact) resul = false;
+        if (c instanceof personalContact) resul = false;
         else contacts.add(newContact);
         return resul;
     }
