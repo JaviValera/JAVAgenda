@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 public class agenda {
@@ -94,7 +93,7 @@ public class agenda {
         //load info
 
         while (line != null) {
-            String data[] = line.split("-");
+            String[] data = line.split("-");
             int id = Integer.parseInt(data[0]);
             String name = data[1];
             String gender = data[2];
@@ -117,7 +116,7 @@ public class agenda {
         //load info
 
         while (line != null) {
-            String data[] = line.split("-");
+            String[] data = line.split("-");
             int id = Integer.parseInt(data[0]);
             String name = data[1];
             String gender = data[2];
