@@ -223,6 +223,7 @@ public class agenda {
             for (contact n : this.contacts) {
                 if (n.getId() == i) {
                     notfound = true;
+                    break;
                 }
             }
         }while(notfound);
