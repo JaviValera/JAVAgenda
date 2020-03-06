@@ -7,19 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class professionalContactTest {
     professionalContact professional;
-    private int id;
-    private String name;
-    private String gender;
-    private int phoneNumber;
     private String email;
     @BeforeEach
     void setUp() {
-    id=1;
-    name="testname";
-    gender="testgender";
-    phoneNumber=1;
+        int id = 1;
+        String name = "testname";
+        String gender = "testgender";
+        int phoneNumber = 1;
     email="testemail";
-    professional = new professionalContact(id,name,gender,phoneNumber,email);
+    professional = new professionalContact(id, name, gender, phoneNumber,email);
     }
     @Test
     void getEmail() {
