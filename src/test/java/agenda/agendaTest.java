@@ -130,4 +130,20 @@ class agendaTest {
         assertTrue(FileUtils.contentEquals(aux,fileProTxt));
         wipe();
     }
+
+    @Test
+    void findfreeid() {
+        assertEquals(3,agenda.findfreeid());
+    }
+
+    @Test
+    void mergeAgenda() {
+        agenda agenda2 = new agenda();
+        per2 = new personalContact(3,"name1","Female",123,"01/01/1991");
+        pro2 = new professionalContact(4,"name2","Other",1234,"mail@mail.com");
+        agenda2.addPersonalContact(per2);
+        agenda2.addProfessionalContact(pro2);
+        agenda.mergeAgenda(agenda2);
+        assertEquals(5,agenda.findfreeid());
+    }
 }

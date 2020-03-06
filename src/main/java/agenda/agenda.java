@@ -217,7 +217,7 @@ public class agenda {
         wr.close();
         bw.close();
     }
-    private int findfreeid(){
+    protected int findfreeid(){
         boolean notfound=false;
     int i=0;
         do{
