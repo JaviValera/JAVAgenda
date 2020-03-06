@@ -7,11 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class agenda {
 
@@ -31,7 +27,7 @@ public class agenda {
         boolean resul = true;
         contact c = searchContact(newContact.getId());
         //If the contact exists as a Professional Contact, it cannot be added
-        if (c != null && c instanceof professionalContact) resul = false;
+        if (c instanceof professionalContact) resul = false;
         else contacts.add(newContact);
         return resul;
     }
@@ -39,7 +35,7 @@ public class agenda {
         boolean resul = true;
         contact c = searchContact(newContact.getId());
         //If the contact exists as a Personal Contact, it cannot be added
-        if (c != null && c instanceof personalContact) resul = false;
+        if (c instanceof personalContact) resul = false;
         else contacts.add(newContact);
         return resul;
     }
@@ -97,7 +93,7 @@ public class agenda {
         //load info
 
         while (line != null) {
-            String data[] = line.split("-");
+            String[] data = line.split("-");
             int id = Integer.parseInt(data[0]);
             String name = data[1];
             String gender = data[2];
@@ -120,7 +116,7 @@ public class agenda {
         //load info
 
         while (line != null) {
-            String data[] = line.split("-");
+            String[] data = line.split("-");
             int id = Integer.parseInt(data[0]);
             String name = data[1];
             String gender = data[2];
@@ -226,6 +222,7 @@ public class agenda {
             for (contact n : this.contacts) {
                 if (n.getId() == i) {
                     notfound = true;
+                    break;
                 }
             }
         }while(notfound);
