@@ -18,7 +18,7 @@ private String date;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         personalContact that = (personalContact) o;
-        return date != null ? date==that.date : that.date == null;
+        return date != null ? date.equals(that.date) : that.date == null;
     }
     @Override
     public int hashCode() {

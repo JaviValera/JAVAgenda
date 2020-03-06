@@ -4,7 +4,7 @@ import contact.*;
 import java.io.IOException;
 
 public class main {
-    public static void main(String[] args) throws IOException {
+    public main(String[] args) throws IOException {
         agenda agenda = new agenda();
         agenda agenda1= new agenda();
         personalContact per1 = new personalContact(1,"Mikel","Male",987654321, "06/11/1996");

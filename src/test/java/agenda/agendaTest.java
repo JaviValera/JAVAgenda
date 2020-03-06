@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import contact.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -21,7 +19,7 @@ class agendaTest {
     ArrayList<contact> contacts;
 
     @BeforeEach
-    void setUp() throws ParseException {
+    void setUp() {
         agenda = new agenda();
         filePerdb = new File("src/test/personalContactTest.db");
         fileProdb = new File("src/test/professionalContactTest.db");
@@ -46,14 +44,14 @@ class agendaTest {
     void addProfessionalContact() {
         pro2 = new professionalContact(3,"name3","Male",12345,"mail@bth.com");
         agenda.addProfessionalContact(pro2);
-        assertTrue(pro2.equals(agenda.searchContact(pro2.getId())));
+        assertEquals(pro2, agenda.searchContact(pro2.getId()));
     }
 
     @Test
-    void addPersonalContact() throws ParseException {
+    void addPersonalContact() {
         per2 = new personalContact(4,"name4","Other",123456,"01/01/1991");
        agenda.addPersonalContact(per2);
-       assertTrue(per2.equals(agenda.searchContact(per2.getId())));
+        assertEquals(per2, agenda.searchContact(per2.getId()));
     }
 
     @Test
@@ -71,27 +69,27 @@ class agendaTest {
     @Test
     void removeContact() {
         assertTrue(agenda.removeContact(per1.getId()));
-        assertEquals(null,agenda.searchContact(per1.getId()));
+        assertNull(agenda.searchContact(per1.getId()));
     }
 
     @Test
     void wipeContacts(){
-        assertFalse(agenda.getContacts().size()==0);
+        assertNotEquals(0, agenda.getContacts().size());
         agenda.wipeContacts();
         contacts.clear();
-        assertTrue(contacts.equals(agenda.getContacts()));
+        assertEquals(contacts, agenda.getContacts());
     }
 
     @Test
     void wipe() throws IOException {
-        assertFalse(agenda.getContacts().size()==0);
+        assertNotEquals(0, agenda.getContacts().size());
         agenda.wipe();
         contacts.clear();
-        assertTrue(contacts.equals(agenda.getContacts()));
+        assertEquals(contacts, agenda.getContacts());
     }
 
     @Test
-    void loadPersonalContact() throws IOException, ParseException {
+    void loadPersonalContact() throws IOException {
         agenda.savePersonalContact();
         agenda.wipeContacts();
         contacts.remove(pro1);
@@ -123,7 +121,8 @@ class agendaTest {
     }
 
     @Test
-    void searchContactSuccess() { assertTrue(pro1.equals(agenda.searchContact(pro1.getId())));
+    void searchContactSuccess() {
+        assertEquals(pro1, agenda.searchContact(pro1.getId()));
     }
     @Test
     void generatePersonalContactsFile() throws IOException {
