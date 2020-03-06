@@ -57,6 +57,18 @@ class agendaTest {
     }
 
     @Test
+    void modify(){
+        agenda.modify(per1,1,"99");
+        assertEquals(99,per1.getId());
+        agenda.modify(per1,2,"NameTest");
+        assertEquals("NameTest",per1.getName());
+        agenda.modify(per1,3,"Gender");
+        assertEquals("Gender",per1.getGender());
+        agenda.modify(per1,4,"1234567890");
+        assertEquals(1234567890,per1.getPhoneNumber());
+    }
+
+    @Test
     void removeContact() {
         assertTrue(agenda.removeContact(per1));
         assertEquals(null,agenda.searchContact(per1));
