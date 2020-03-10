@@ -24,22 +24,19 @@ public class agenda {
     }
 
     public void addProfessionalContact(professionalContact newContact) {
-        boolean resul = true;
         contact c = searchContact(newContact.getId());
         //If the contact exists as a Professional Contact, it cannot be added
-        if (c instanceof professionalContact) resul = false;
+        if (c instanceof professionalContact);
         else contacts.add(newContact);
     }
     public void addPersonalContact(personalContact newContact){
-        boolean resul = true;
         contact c = searchContact(newContact.getId());
         //If the contact exists as a Personal Contact, it cannot be added
-        if (c instanceof personalContact) resul = false;
+        if (c instanceof personalContact);
         else contacts.add(newContact);
     }
 
     public void modify(int id, int value, String data){
-        boolean resul=true;
         switch (value){
             case 1:
                 searchContact(id).setId(Integer.parseInt(data));
@@ -53,8 +50,6 @@ public class agenda {
             case 4:
                 searchContact(id).setPhoneNumber(Integer.parseInt(data));
                 break;
-            default:
-                resul=false;
         }
     }
 
